@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import useMediaQuery from './hooks/useMediaQuery';
 import NavBar from './scenes/Navbar';
 import DotGroup from "./scenes/DotGroup"
+import Landing from "./scenes/Landing"
 
 function App() {
   const [selectedPage, setSelectedPage] = useState('home');
@@ -14,8 +15,9 @@ function App() {
       if (window.scrollY !== 0) setIsTopOfPage(false);
     };
     window.addEventListener('scroll', handleScroll);
-    return window.removeEventListener('scroll');
+    return window.removeEventListener('scroll', handleScroll);
   }, []);
+
   return (
     <div className="app bg-deep-blue">
       <NavBar
@@ -30,6 +32,7 @@ function App() {
             setSelectedPage={setSelectedPage}
           ></DotGroup>
         )}
+        <Landing setSelectedPage={setSelectedPage} /> 
       </div>
     </div>
   );
